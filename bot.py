@@ -1,11 +1,7 @@
-import telebot
+from telebot import types
 
-TOKEN = "8598047892:AAEydgq1ip8wHXkwpPS073j2KYchDtuQL8s"
+markup = types.ReplyKeyboardMarkup(one_time_keyboard=True)
+button = types.KeyboardButton("Отправить номер", request_contact=True)
+markup.add(button)
 
-bot = telebot.TeleBot(TOKEN)
-
-@bot.message_handler(commands=['start'])
-def start(message):
-    bot.reply_to(message, "Бот работает 🚀")
-
-bot.infinity_polling()
+bot.send_message(message.chat.id, "Нажми кнопку чтобы отправить номер", reply_markup=markup)
